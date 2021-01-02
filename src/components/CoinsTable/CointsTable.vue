@@ -27,19 +27,28 @@
 
       </div>
     </div>
+
+    <div class="coin-table__loader" v-if="tableDataLoading">
+      <loadingCicle />
+    </div>
+
+
   </section>
 </template>
 
 <script>
+  import loadingCicle from "@/components/kernel/loadingCicle";
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: "CointsTable",
+    components: { loadingCicle },
 
 
     computed: {
       ...mapGetters({
-        getCoins: 'app/getCryptoTableData'
+        getCoins: 'app/getCryptoTableData',
+        tableDataLoading: 'app/getLoadingTableData'
       })
     },
 
@@ -110,6 +119,13 @@
     }
   }
 
+  &__loader {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__coin-name {
     border-right: 1px solid rgba(0,0,0,.3);
     text-align: center;
@@ -142,6 +158,18 @@
 
 
   @media screen and (max-width: 600px) {
+    .coin-table {
 
+
+      &__coin-name {
+        &-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 95px;
+          word-break: break-all;
+        }
+      }
+    }
   }
 </style>

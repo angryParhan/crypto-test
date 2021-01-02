@@ -4,6 +4,7 @@
     <section class="main-content">
       <router-view/>
     </section>
+    <UpBtn />
   </div>
 </template>
 
@@ -12,10 +13,11 @@
   import appStore from '../src/store/app'
   import chartStore from '../src/store/chartStore'
   import Header from '@/components/kernel/Header/Header'
+  import UpBtn from '@/components/kernel/UpBtn.vue'
 
 
   export default {
-    components: { Header },
+    components: { Header, UpBtn },
 
     beforeCreate () {
       if (!this.$store.state.app) {
@@ -50,6 +52,12 @@
 
   .main-content {
     padding: 75px 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .main-content {
+      padding: 75px 0;
+    }
   }
 
 </style>

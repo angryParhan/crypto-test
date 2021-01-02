@@ -76,6 +76,9 @@ export default {
 
     &__chart {
       margin-top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
     &__additional {

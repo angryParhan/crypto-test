@@ -1,9 +1,11 @@
 <template>
   <section>
+    <chartPreloader v-if="loading"/>
     <highcharts
+        class="chart-data"
+        v-else-if="chartOptions.series[0].data.length"
         :options="chartOptions"
         ref="chart"
-
     />
   </section>
 </template>
@@ -11,9 +13,12 @@
 <script>
   import { mapGetters } from 'vuex'
   import Highcharts from "highcharts"
+  import chartPreloader from './ChartLoader'
 
   export default {
     name: "CurrencyChart",
+
+    components: { chartPreloader },
 
     data () {
       return {
@@ -107,6 +112,10 @@
 </script>
 
 <style lang="scss">
+
+  .chart-data {
+    width: 100%;
+  }
   .highcharts-credits {
     display: none !important;
   }
