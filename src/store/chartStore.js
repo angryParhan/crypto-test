@@ -6,7 +6,8 @@ export default {
     Xtitle: '',
     seriesTitle: '',
     seriesData: [],
-    loading: false
+    loading: false,
+    currentCoin: ''
   },
   mutations: {
     SET_SERIAS_DATA (state, value) {
@@ -17,6 +18,7 @@ export default {
       state.seriesTitle = ''
       state.seriesData = []
       state.loading = false
+      state.currentCoin = ''
     },
     SET_CHART_LOADING (state, value) {
       state.loading = value
@@ -24,6 +26,7 @@ export default {
   },
   actions: {
     async getChartData ({ commit, state }, payload) {
+      state.currentCoin = payload.value
       commit('SET_CHART_LOADING', true)
       window.scroll({top: 0, behavior: 'smooth'})
       state.Xtitle = `${payload.displayValue} to USD exchange rate`
@@ -46,6 +49,9 @@ export default {
     },
     getLoading (state) {
       return state.loading
+    },
+    getCurrentCoin (state) {
+      return state.currentCoin
     }
   }
 }
